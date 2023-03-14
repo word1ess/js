@@ -27,12 +27,27 @@ function countOfSubstrings(str) {
 countOfSubstrings("abcdabcdabcdabcd");
 
 function countOfPlitka(count, color, arr) {
-  let arr1 = arr;
-  let arrReverse = arr.reverse();
+  let newArr = arr;
+  let countArr = [];
+  let substring = arr.join("");
+  let regExp = arr.join("");
+  for (let i = arr.length - 1; i >= 0; i--) {
+    newArr.push(arr[i]);
+  }
+  newArr = newArr.join("");
 
-  let newArr = arr1.concat(arrReverse);
+  for (let i = 0; count <= substring.length; i++) {
+    substring = newArr.substring(0, newArr.length / 2 - i);
+    substring += newArr.substring(newArr.length / 2 + i, newArr.length);
 
-  return newArr;
+    console.log(substring, substring.length, regExp);
+
+    if (substring.includes(regExp)) {
+      countArr.push(substring.length / 2);
+    }
+  }
+
+  return countArr;
 }
 
-console.log(countOfPlitka(0, 1, [1, 1, 2, 1, 3]));
+console.log(countOfPlitka(6, 2, [1, 1, 2, 2, 1, 1]));
